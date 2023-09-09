@@ -10,10 +10,10 @@ export default function Home() {
       </h2>
       <h2>¿Qué desea realizar?</h2>
       <div className="flex">
-        <Link className="bg-indigo-500 px-4 py-2 mr-2" href="/register">
+        <Link className="bg-indigo-500 px-4 py-2 mr-2" href="/crear-pqr">
           Crea tu PQR
         </Link>
-        <Link className="bg-indigo-500 px-4 py-2" href="/register">
+        <Link className="bg-indigo-500 px-4 py-2" href="/consultar-pqr">
           Consulta tu PQR
         </Link>
       </div>
