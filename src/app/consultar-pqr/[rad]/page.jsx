@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import  Axios  from "axios";
 
-export default function page({ params }) {
+export default function Page({ params }) {
   const [pqr, setPQR] = useState(null);
 
   const fetchPQR = async () => {
