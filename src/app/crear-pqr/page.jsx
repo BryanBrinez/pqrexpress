@@ -1,8 +1,35 @@
 "use client";
+import { useState, useEffect } from "react";
+import Axios from "axios";
 
 export default function Page() {
+  const [fullnames, setFullNames] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [cel, setCel] = useState(null);
+  const [dep, setDep] = useState(null);
+  const [city, setCity] = useState(null);
+  const [subject, setSubject] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [error, setError] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //console.log(fullnames,email,cel,dep,city,subject,description,error)
+
+    try {
+      const res = await Axios.post("/api/pqr", {
+        fullname: fullnames,
+        email,
+        number: cel,
+        departament: dep,
+        city,
+        subject,
+        description,
+      });
+      console.log(res)
+    } catch (error) {
+      setError(error.response?.data.message);
+    }
   };
   return (
     <div>
@@ -13,6 +40,7 @@ export default function Page() {
       </h2>
 
       <form onSubmit={handleSubmit}>
+        {error && <div className="bg-red-500 text-white p-2 mb-2">{error}</div>}
         <h2>Información de contacto</h2>
         <div>Opcion para anonimo o no</div>
 
@@ -21,36 +49,36 @@ export default function Page() {
           type="text"
           placeholder="Nombre y apellidos"
           name="nombres"
-          onChange={() => console.log("sisi")}
+          onChange={(e) => setFullNames(e.target.value)}
         />
         <input
           className="bg-zinc-800 px-4 py-2 block mb-2"
           type="text"
           placeholder="correo"
           name="correo"
-          onChange={() => console.log("sisi")}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           className="bg-zinc-800 px-4 py-2 block mb-2"
-          type="text"
+          type="number"
           placeholder="celular"
           name="celular"
-          onChange={() => console.log("sisi")}
+          onChange={(e) => setCel(e.target.value)}
         />
         <input
           className="bg-zinc-800 px-4 py-2 block mb-2"
           type="text"
           placeholder="departamento"
           name="departamento"
-          onChange={() => console.log("sisi")}
+          onChange={(e) => setDep(e.target.value)}
         />
         <input
           className="bg-zinc-800 px-4 py-2 block mb-2"
           type="text"
           placeholder="ciudad"
           name="ciudad"
-          onChange={() => console.log("sisi")}
+          onChange={(e) => setCity(e.target.value)}
         />
 
         <h2>Información de contacto</h2>
@@ -60,18 +88,17 @@ export default function Page() {
           type="text"
           placeholder="Asunto"
           name="asunto"
-          onChange={() => console.log("sisi")}
+          onChange={(e) => setSubject(e.target.value)}
         />
         <input
           className="bg-zinc-800 px-4 py-2 block mb-2"
           type="text"
           placeholder="Descripcion"
           name="descripcion"
-          onChange={() => console.log("sisi")}
+          onChange={(e) => setDescription(e.target.value)}
         />
 
         <button className="bg-indigo-500 px-4 py-2" type="submit">
-          {" "}
           Subir pqr
         </button>
       </form>

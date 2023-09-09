@@ -1,8 +1,18 @@
 "use client";
+import { useRouter } from "next/navigation";
+
+
+import { useState, useEffect } from "react";
+
 
 export default function Page() {
+  const [radicado, setRadicado] = useState(null);
+  const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    router.push(`/consultar-pqr/${radicado}`);
   };
   return (
     <div>
@@ -17,7 +27,7 @@ export default function Page() {
           type="text"
           placeholder="1231313"
           name="radicado"
-          onChange={() => console.log("sisi")}
+          onChange={(e) => setRadicado(e.target.value)}
         />
 
         <button className="bg-indigo-500 px-4 py-2" type="submit">

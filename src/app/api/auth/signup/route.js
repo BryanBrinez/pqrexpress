@@ -2,7 +2,6 @@ import { connectDB } from "@/libs/mongodb";
 import User from "@/models/user";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import mongoose from "mongoose";
 
 export async function POST(request) {
   const { fullname, email, password } = await request.json();
@@ -39,6 +38,23 @@ export async function POST(request) {
     console.log(savedUser);
 
     return NextResponse.json(savedUser);
+  } catch (error) {
+    if (error instanceof Error) {
+      return NextResponse.json(
+        {
+          message: error.message,
+        },
+        { status: 400 }
+      );
+    }
+  }
+}
+
+export async function GET() {
+  try {
+    await connectDB();
+    
+    
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json(

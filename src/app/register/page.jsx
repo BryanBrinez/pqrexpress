@@ -25,7 +25,7 @@ export default function Page () {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        {error && <div className="bg-blue-500 text-white p-2 mb-2">{error}</div>}
+        {error && <div className="bg-red-500 text-white p-2 mb-2">{error}</div>}
         <h1>Registrate</h1>
         <input
           className="bg-zinc-800 px-4 py-2 block mb-2"
