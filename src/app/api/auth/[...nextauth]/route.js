@@ -35,6 +35,7 @@ callbacks: {
         return session;
     }
 },
+secret: process.env.JWT_SECRET,
 pages: {
     signIn: "/login"
 }
