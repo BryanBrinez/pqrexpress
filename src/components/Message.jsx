@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react";
 
 
-export default function Message({children}) {
+export default function Message({data}) {
 
   return (
     <>
-      {children?.map((item, index) => (
+      {data?.map((item, index) => (
         <div
         style={{
           boxShadow:

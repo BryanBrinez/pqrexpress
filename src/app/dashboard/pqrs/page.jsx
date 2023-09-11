@@ -4,7 +4,7 @@ import Axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const [pqr, setPQR] = useState(null);
+  const [pqr, setPQR] = useState([]);
 
   const fetchPQR = async () => {
     try {
@@ -57,7 +57,7 @@ export default function Page() {
       </h2>
       <div className="flex-1  flex w-screen items-center overflow-y-auto justify-center py-3">
         <div className="w-11/12 my-auto space-y-3 py-3 ">
-          <Message children={pqr} />
+          <Message data={pqr} />
         </div>
       </div>
       <div className="flex items-center justify-center h-14 bg-slate-500">
