@@ -5,15 +5,40 @@ import { useEffect, useState } from "react";
 
 export default function Page() {
   const [pqr, setPQR] = useState([]);
+  const [showPqr, setShowPqr] = useState([]);
+  const [search, setSearch] = useState("");
 
   const fetchPQR = async () => {
     try {
       const res = await Axios.get(`/api/pqr`);
       setPQR(res.data);
+      setShowPqr(res.data);
     } catch (error) {
       console.log("hay un error");
     }
   };
+
+
+  const handleChange = (e) => {
+    
+    setSearch(e.target.value);
+    filter(e.target.value)
+  }
+
+  const filter = (dataToSearch) => {
+    const result = showPqr.filter((element) =>
+    {
+      if(element.subject.toString().toLowerCase().includes(dataToSearch.toLowerCase())
+      || element.fullname.toString().toLowerCase().includes(dataToSearch.toLowerCase())
+      || element.radicado.toString().toLowerCase().includes(dataToSearch.toLowerCase())){
+        return element
+      }
+    })
+    setPQR(result)
+    
+  }
+
+  
 
   useEffect(() => {
     fetchPQR();
@@ -27,9 +52,11 @@ export default function Page() {
         <input
           className="text-black bg-colorOne rounded-2xl  h-9 w-3/4 placeholder-white pl-4"
           type="text"
+          value={search}
           name=""
           id=""
-          placeholder="Buca un PQR"
+          placeholder="Buca un PQR..."
+          onChange={handleChange}
         />
         <span
           className="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-200 dark:text-neutral-700"
