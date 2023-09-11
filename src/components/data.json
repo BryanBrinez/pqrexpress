@@ -1,0 +1,17 @@
+[
+  {
+    "pqr": {
+      "_id": "64fc08f96a9b98dddecb8676",
+      "radicado": 5,
+      "fullname": "test2",
+      "email": "test2@asdw.com",
+      "departament": "test2",
+      "city": "test2",
+      "subject": "test2",
+      "description": "test2",
+      "response": "",
+      "createdAt": "Junio 10 2023",
+      "updatedAt": "2023-09-09T05:56:09.177Z"
+    }
+  }
+]

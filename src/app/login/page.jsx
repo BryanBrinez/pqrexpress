@@ -21,7 +21,7 @@ export default function Page() {
       redirect: false,
     });
     if (res?.error) return setError(res.error);
-    if (res?.ok) return router.push("/dashboard");
+    if (res?.ok) return router.push("/dashboard/pqrs");
   };
   return (
     <div>
