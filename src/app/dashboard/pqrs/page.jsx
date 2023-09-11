@@ -1,5 +1,23 @@
+"use client";
 import Message from "@/components/Message";
+import Axios from "axios";
+import { useEffect, useState } from "react";
+
 export default function Page() {
+  const [pqr, setPQR] = useState(null);
+
+  const fetchPQR = async () => {
+    try {
+      const res = await Axios.get(`/api/pqr`);
+      setPQR(res.data);
+    } catch (error) {
+      console.log("hay un error");
+    }
+  };
+
+  useEffect(() => {
+    fetchPQR();
+  }, []);
   return (
     <div className="w-screen h-screen flex items-center flex-col px-4 bg-white">
       <div className="flex items-center justify-center w-screen h-14 bg-slate-500">
@@ -37,8 +55,13 @@ export default function Page() {
       >
         Recibidos
       </h2>
-      <div className="flex-1 flex w-screen  justify-center bg-white py-4">
-        <Message></Message>
+      <div className="flex-1  flex w-screen items-center overflow-y-auto justify-center py-3">
+        <div className="w-11/12 my-auto space-y-3 py-3 ">
+          <Message children={pqr} />
+        </div>
+      </div>
+      <div className="flex items-center justify-center h-14 bg-slate-500">
+        {/* Contenido del navbar */}
       </div>
     </div>
   );
