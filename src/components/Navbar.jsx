@@ -15,7 +15,7 @@ export default function Navbar() {
   
   return (
     <div className="w-screen h-14 p-3 fixed bottom-0 text-black bg-colorOne">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-around">
         <Link href={"/dashboard/register"}>
           <AiOutlineUserAdd size={32} />
         </Link>

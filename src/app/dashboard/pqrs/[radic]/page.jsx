@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import { MdArrowBack } from "react-icons/md";
 import swal from "sweetalert";
+import Link from "next/link";
 
 export default function Page({ params }) {
   const [pqr, setPQR] = useState({});
   const [response, setResponse] = useState("");
-  const {radic} =params
+  const {radic} = params
 
   const fetchPQR = async () => {
     try {
@@ -57,7 +58,9 @@ export default function Page({ params }) {
           className="flex-1 flex   flex-col bg-tarjeta p-4 px-4  rounded-lg "
         >
           <div className="flex w-full justify-between items-center">
+            <Link href={"/dashboard/pqrs"}>
             <MdArrowBack size={25} />
+            </Link>
 
             <p className="text-xs text-slate-600">{pqr?.createdAt}</p>
           </div>
