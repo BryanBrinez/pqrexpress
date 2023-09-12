@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-
+import swal from "sweetalert";
 import Axios from "axios";
 
 export default function Page () {
@@ -18,6 +18,11 @@ export default function Page () {
         password,
         fullname,
       });
+
+      if(res.statusText == "OK"){swal({
+        title: "Se ha creado un nuevo administrador",
+        icon: "success",
+      })} 
     } catch (error) {
       setError(error.response?.data.message); 
     }

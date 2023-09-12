@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Axios from "axios";
+import swal from "sweetalert";
 
 export default function Page() {
   const [fullnames, setFullNames] = useState(null);
@@ -26,7 +27,12 @@ export default function Page() {
         subject,
         description,
       });
-      console.log(res)
+      if(res.statusText == "OK"){swal({
+        title: "Se ha enviado su PQR",
+        text: "Su radicado con el cual puede revisar su PQR es: "+ res.data.radicado,
+        icon: "success",
+      })}  
+      
     } catch (error) {
       setError(error.response?.data.message);
     }
