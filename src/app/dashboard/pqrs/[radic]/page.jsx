@@ -2,10 +2,12 @@
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import { MdArrowBack } from "react-icons/md";
+import swal from "sweetalert";
 
 export default function Page({ params }) {
   const [pqr, setPQR] = useState({});
   const [response, setResponse] = useState("");
+  const {radic} =params
 
   const fetchPQR = async () => {
     try {
@@ -18,12 +20,13 @@ export default function Page({ params }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const res = await Axios.put("/api/pqr", {
-        fullname: fullnames,
-        email,
+        radic,
+        res: response
       });
+      console.log(res)
       if (res.statusText == "OK") {
         swal({
           title: "La respuesta del PQR ha sido enviada",
@@ -31,7 +34,7 @@ export default function Page({ params }) {
         });
       }
     } catch (error) {
-      setError(error.response?.data.message);
+      //setError(error.response?.data.message);
     }
   };
 
@@ -66,17 +69,18 @@ export default function Page({ params }) {
           </div>
 
           <div className="mt-auto flex flex-col">
-            <form action="">
+            <form onSubmit={handleSubmit}>
               <div className="flex justify-center ">
                 <input
                   className="mb-2 h-14 border w-11/12 border-gray-400 px-4"
                   type="text"
                   placeholder="Tu respuesta"
+                  onChange={(e) => setResponse(e.target.value)}
                 />
               </div>
 
               <div className="flex justify-center items-start">
-                <button className=" bg-colorOne w-3/4 text-white font-bold py-2 rounded ">
+                <button type="submit" className=" bg-colorOne w-3/4 text-white font-bold py-2 rounded ">
                   Responder
                 </button>
               </div>

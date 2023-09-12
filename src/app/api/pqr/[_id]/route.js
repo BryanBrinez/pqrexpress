@@ -6,7 +6,6 @@ export const GET = async (request, { params }) => {
   try {
     await connectDB();
 
-    console.log(params._id);
     const pqrFound = await PQR.findOne({ radicado: params._id });
 
     return NextResponse.json(pqrFound);
@@ -15,18 +14,4 @@ export const GET = async (request, { params }) => {
   }
 };
 
-export const PUT = async (request, { params }) => {
-  try {
-    await connectDB();
-    const { radic,res} = await request.json();
 
-    const filter = { radicado: radic };
-    const update = { response: res };
-   
-    const pqrFound = await PQR.findOneAndUpdate(filter,update);
-
-    return NextResponse.json(pqrFound);
-  } catch (error) {
-    return new Response("Failed to PUT all prompts", { status: 500 });
-  }
-};
