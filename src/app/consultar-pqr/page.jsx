@@ -1,23 +1,34 @@
 "use client";
 import { useRouter } from "next/navigation";
-
-
+import Axios from "axios";
 import { useState, useEffect } from "react";
-
 
 export default function Page() {
   const [radicado, setRadicado] = useState(null);
   const router = useRouter();
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    router.push(`/consultar-pqr/${radicado}`);
+
+    try {
+      const res = await Axios.get(`/api/pqr/${radicado}`);
+      console.log(res);
+
+      res.data == null
+        ? setError("No se ha encontrado ningún PQR con ese radicado")
+        : router.push(`/consultar-pqr/${radicado}`);
+
+      //
+    } catch (error) {
+      setError(error.response?.data);
+    }
   };
   return (
     <div>
       <h1>Consultar solicitud</h1>
       <h2>Ingrese el numero de su radicado del PQR</h2>
+      {error && <div className="bg-red-500 text-white p-2 mb-2">{error}</div>}
 
       <form onSubmit={handleSubmit}>
         <h2>Numeor de radicado:</h2>

@@ -9,6 +9,8 @@ export default function Page({ params }) {
     try {
       const res = await Axios.get(`/api/pqr/${params.rad}`);
       setPQR(res.data);
+
+      
     } catch (error) {
       console.log(error.response?.data.message);
     }
