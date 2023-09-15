@@ -15,7 +15,7 @@ export default function Page() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(fullnames,email,cel,dep,city,subject,description,error)
+    //console.log(fullnames,email,cel,dep,city,subject,description,error)
 
     try {
       const res = await Axios.post("/api/pqr", {
@@ -27,11 +27,13 @@ export default function Page() {
         subject,
         description,
       });
-      if(res.statusText == "OK"){swal({
+
+
+      swal({
         title: "Se ha enviado su PQR",
         text: "Su radicado con el cual puede revisar su PQR es: "+ res.data.radicado,
         icon: "success",
-      })}  
+      })
       
     } catch (error) {
       setError(error.response?.data.message);
