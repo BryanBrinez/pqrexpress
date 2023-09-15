@@ -15,7 +15,7 @@ export default function Page() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //console.log(fullnames,email,cel,dep,city,subject,description,error)
+    console.log(fullnames,email,cel,dep,city,subject,description,error)
 
     try {
       const res = await Axios.post("/api/pqr", {

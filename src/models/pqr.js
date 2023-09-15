@@ -42,13 +42,13 @@ const PQRSchema = new Schema(
     subject: {
       type: String,
       required: [true, "El asunto es requerido"],
-      minLength: [10, "fullname must be at least 3 characters"],
+      minLength: [5, "El asunto tiene que ser mayor a 5 caracteres"],
      
     },
     description: {
       type: String,
       required: [true, "La descripcion del PQR es requerida"],
-      minLength: [10, "fullname must be at least 3 characters"],
+      minLength: [5, "El asunto tiene que ser mayor a 5 caracteres"],
       
     },
     response: {
