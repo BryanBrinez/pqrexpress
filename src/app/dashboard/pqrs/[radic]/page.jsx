@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Page({ params }) {
   const [pqr, setPQR] = useState({});
   const [response, setResponse] = useState("");
-  const {radic} = params
+  const { radic } = params;
 
   const fetchPQR = async () => {
     try {
@@ -21,19 +21,18 @@ export default function Page({ params }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const res = await Axios.put("/api/pqr", {
         radic,
-        res: response
+        res: response,
       });
-      console.log(res)
-      if (res.statusText == "OK") {
-        swal({
-          title: "La respuesta del PQR ha sido enviada",
-          icon: "success",
-        });
-      }
+      console.log(res);
+
+      swal({
+        title: "La respuesta del PQR ha sido enviada",
+        icon: "success",
+      });
     } catch (error) {
       //setError(error.response?.data.message);
     }
@@ -59,7 +58,7 @@ export default function Page({ params }) {
         >
           <div className="flex w-full justify-between items-center">
             <Link href={"/dashboard/pqrs"}>
-            <MdArrowBack size={25} />
+              <MdArrowBack size={25} />
             </Link>
 
             <p className="text-xs text-slate-600">{pqr?.createdAt}</p>
@@ -68,7 +67,9 @@ export default function Page({ params }) {
           <div className="py-3 overflow-y-auto">
             <h1 className="font-bold">{pqr?.subject}</h1>
             <p className="text-s text-slate-600">{pqr?.fullname}</p>
-            <p className=" py-2 text-slate-800 font-semibold">{pqr?.description}</p>
+            <p className=" py-2 text-slate-800 font-semibold">
+              {pqr?.description}
+            </p>
           </div>
 
           <div className="mt-auto flex flex-col">
@@ -83,7 +84,10 @@ export default function Page({ params }) {
               </div>
 
               <div className="flex justify-center items-start">
-                <button type="submit" className=" bg-colorOne w-3/4 text-white font-bold py-2 rounded ">
+                <button
+                  type="submit"
+                  className=" bg-colorOne w-3/4 text-white font-bold py-2 rounded "
+                >
                   Responder
                 </button>
               </div>

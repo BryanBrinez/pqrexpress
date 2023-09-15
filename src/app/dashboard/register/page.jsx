@@ -3,7 +3,7 @@ import { useState } from "react";
 import swal from "sweetalert";
 import Axios from "axios";
 
-export default function Page () {
+export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullname, setFullName] = useState("");
@@ -19,12 +19,12 @@ export default function Page () {
         fullname,
       });
 
-      if(res.statusText == "OK"){swal({
+      swal({
         title: "Se ha creado un nuevo administrador",
         icon: "success",
-      })} 
+      });
     } catch (error) {
-      setError(error.response?.data.message); 
+      setError(error.response?.data.message);
     }
   };
   return (

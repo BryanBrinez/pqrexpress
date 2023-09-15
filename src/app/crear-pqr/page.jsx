@@ -28,13 +28,13 @@ export default function Page() {
         description,
       });
 
-
       swal({
         title: "Se ha enviado su PQR",
-        text: "Su radicado con el cual puede revisar su PQR es: "+ res.data.radicado,
+        text:
+          "Su radicado con el cual puede revisar su PQR es: " +
+          res.data.radicado,
         icon: "success",
-      })
-      
+      });
     } catch (error) {
       setError(error.response?.data.message);
     }
