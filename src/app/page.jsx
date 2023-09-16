@@ -12,7 +12,7 @@ export default function Home() {
 
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="flex flex-col justify-center items-center mb-4">
-          <h1 className="text-4xl font-extrabold  leading-none tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
+          <h1 className="text-3xl font-extrabold  leading-none tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
             Bienvenido al portal
           </h1>
           <span className="text-blue-600 leading-none tracking-tight text-4xl font-extrabold  dark:text-blue-500 ">
@@ -28,7 +28,7 @@ export default function Home() {
           <p className="text-lg mt-6 text-colorThree font-semibold lg:text-xl">
             ¿Qué desea realizar?
           </p>
-          <div className="flex mt-4 w-full justify-between md:justify-around lg:justify-center lg:gap-4">
+          <div className="flex mt-4 w-full justify-around md:justify-around lg:justify-center lg:gap-4">
             <Link
               className="flex items-center p-2 bg-colorOne text-white font-bold rounded "
               href="/crear-pqr"
@@ -37,7 +37,7 @@ export default function Home() {
               Crea tu PQR
             </Link>
             <Link
-              className="flex items-center p-2 bg-colorOne text-white font-bold  rounded "
+              className="flex items-center p-2 bg-colorOne text-white font-semibold rounded "
               href="/consultar-pqr"
             >
               <BiSearch size={25} />
