@@ -13,7 +13,15 @@ module.exports = {
       backgroundColor: {
         'tarjeta': '#CAE2FF',
         'colorOne': '#899EA3',
+        'colorTwo': '#42616A',
+        'colorThree': '#2C4E59',
         
+      },
+
+      textColor: {
+        'colorOne': '#899EA3',
+        'colorTwo': '#42616A',
+        'colorThree': '#2C4E59',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
