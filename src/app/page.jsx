@@ -5,7 +5,7 @@ import { BiSearch } from "react-icons/bi";
 export default function Home() {
   return (
     //{dark:bg-black dark:text-white}
-    <main className="w-screen h-screen flex items-center text-black flex-col px-4 bg-white ">
+    <div className="w-screen h-screen flex items-center text-black flex-col px-4 bg-white ">
       <div className="flex items-center justify-center w-screen h-14 bg-slate-500">
         logo
       </div>
@@ -46,6 +46,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
