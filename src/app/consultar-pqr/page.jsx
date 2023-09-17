@@ -34,7 +34,7 @@ export default function Page() {
         <h1 className="py-4 text-3xl font-extrabold  leading-none tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
           Consultar solicitud
         </h1>
-        <h2 className="text-xl font-semibold  leading-none tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
+        <h2 className="text-lg font-semibold leading-none  tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
           Ingrese el numero de su radicado del PQR
         </h2>
 
