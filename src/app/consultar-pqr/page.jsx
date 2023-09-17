@@ -4,6 +4,7 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 import { MdArrowBack } from "react-icons/md";
 import Link from "next/link";
+import Header from "@/components/Header";
 
 export default function Page() {
   const [radicado, setRadicado] = useState(null);
@@ -28,9 +29,7 @@ export default function Page() {
   };
   return (
     <div className="w-screen h-screen flex items-center text-black flex-col px-4 bg-white ">
-      <div className="flex items-center justify-center w-screen h-14 bg-slate-500">
-        logo
-      </div>
+      <Header />
 
       <div className="flex-1 flex flex-col justify-center items-center">
         <div className="flex w-full justify-start items-center">

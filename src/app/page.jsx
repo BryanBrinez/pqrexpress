@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { AiOutlineForm } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
     //{dark:bg-black dark:text-white}
     <div className="w-screen h-screen flex items-center text-black flex-col px-4 bg-white ">
-      <div className="flex items-center justify-center w-screen h-14 bg-slate-500">
-        logo
-      </div>
+      <Header />
 
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="flex flex-col justify-center items-center mb-4">
@@ -34,14 +33,14 @@ export default function Home() {
               href="/crear-pqr"
             >
               <AiOutlineForm size={25} />
-              Crea tu PQR
+              &nbsp;Crea tu PQR
             </Link>
             <Link
               className="flex items-center p-2 bg-colorOne text-white font-semibold rounded "
               href="/consultar-pqr"
             >
               <BiSearch size={25} />
-              Consulta tu PQR
+              &nbsp;Consulta tu PQR
             </Link>
           </div>
         </div>

@@ -3,6 +3,19 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Message({ data }) {
+
+  // Función para formatear la fecha y hora
+  const formatDateTime = (dateTime) => {
+    const date = new Date(dateTime);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  };
+
   return (
     <>
       {data?.map((item, index) => (
@@ -17,7 +30,7 @@ export default function Message({ data }) {
           <Link key={index} href={`/dashboard/pqrs/${item.radicado}`}>
             <div className="flex w-full justify-between items-center">
               <h1 className="font-bold text-slate-950">{item.subject}</h1>
-              <p className="text-xs text-slate-600"> {item.createdAt}</p>
+              <p className="text-xs text-slate-600"> {formatDateTime(item.createdAt)}</p>
             </div>
 
             <p className=" text-xs text-slate-500">{item.fullname}</p>

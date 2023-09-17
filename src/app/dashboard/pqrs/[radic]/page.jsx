@@ -4,6 +4,7 @@ import Axios from "axios";
 import { MdArrowBack } from "react-icons/md";
 import swal from "sweetalert";
 import Link from "next/link";
+import Header from "@/components/Header";
 
 export default function Page({ params }) {
   const [pqr, setPQR] = useState({});
@@ -44,9 +45,7 @@ export default function Page({ params }) {
 
   return (
     <div className="text-black w-screen h-screen flex items-center flex-col px-4 bg-white">
-      <div className="flex items-center justify-center w-screen h-14 bg-slate-500">
-        logo
-      </div>
+      <Header />
 
       <div className="flex-1 w-11/12 flex  overflow-y-auto justify-center py-3">
         <div

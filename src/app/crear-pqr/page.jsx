@@ -4,6 +4,7 @@ import Axios from "axios";
 import swal from "sweetalert";
 import { MdArrowBack } from "react-icons/md";
 import Link from "next/link";
+import Header from "@/components/Header";
 
 export default function Page() {
   const [fullnames, setFullNames] = useState("Anonimo");
@@ -44,9 +45,7 @@ export default function Page() {
   };
   return (
     <div className="w-screen h-fit flex items-center text-black flex-col px-4 bg-white ">
-      <div className="flex items-center justify-center w-screen h-14 bg-slate-500">
-        logo
-      </div>
+      <Header />
 
       <div className="flex-1 h-screen px-4 py-3 flex flex-col justify-center ">
         <div className="flex w-full justify-start items-center">

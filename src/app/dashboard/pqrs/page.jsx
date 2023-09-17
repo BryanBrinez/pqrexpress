@@ -1,6 +1,7 @@
 "use client";
 import Message from "@/components/Message";
 import Axios from "axios";
+import Header from "@/components/Header";
 
 import { useEffect, useState } from "react";
 
@@ -51,9 +52,8 @@ export default function Page() {
   }, []);
   return (
     <div className="w-screen h-screen flex items-center flex-col px-4 bg-white">
-      <div className="flex items-center justify-center w-screen h-14 bg-slate-500">
-        logo
-      </div>
+      <Header />
+
       <div className="flex items-center justify-center w-screen h-14 ">
         <input
           className="text-black bg-colorOne rounded-2xl  h-9 w-3/4 placeholder-white pl-4"
