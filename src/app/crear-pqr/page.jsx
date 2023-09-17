@@ -193,7 +193,7 @@ export default function Page() {
           )}
           
 
-          <div className="w-5/6 py-4">
+          <div className="w-5/6 pt-4">
             
 
             <h2 className=" mb-3 text-lg font-extrabold  leading-none tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
@@ -240,7 +240,7 @@ export default function Page() {
               </label>
             </div>
           </div>
-          <button className="bg-indigo-500 px-4 py-2" type="submit">
+          <button className=" bg-colorOne w-2/5 text-white font-bold py-2 rounded " type="submit">
             Subir pqr
           </button>
         </form>
