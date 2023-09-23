@@ -27,24 +27,30 @@ export default function Home() {
           <p className="text-lg mt-6 text-colorThree font-semibold lg:text-xl">
             ¿Qué desea realizar?
           </p>
-          <div className="flex mt-4 w-full justify-around md:justify-around lg:justify-center lg:gap-4">
+          
+        </div>
+        <div className="flex mt-4  w-full justify-around md:justify-around lg:justify-center lg:gap-4">
             <Link
               className="flex items-center p-2 bg-colorOne text-white font-bold rounded "
               href="/crear-pqr"
             >
               <AiOutlineForm size={25} />
-              &nbsp;Crea tu PQR
+              Crea tu PQR
             </Link>
             <Link
               className="flex items-center p-2 bg-colorOne text-white font-semibold rounded "
               href="/consultar-pqr"
             >
               <BiSearch size={25} />
-              &nbsp;Consulta tu PQR
+              Consulta tu PQR
             </Link>
           </div>
-        </div>
       </div>
+      <p >¿Eres administrador? 
+        <Link  className="font-semibold text-colorOne" href={"/login"}>
+        &nbsp;Inicia sesión
+        </Link>
+      </p>
     </div>
   );
 }
