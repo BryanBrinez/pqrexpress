@@ -12,8 +12,6 @@ export default function Page({ params }) {
     try {
       const res = await Axios.get(`/api/pqr/${params.rad}`);
       setPQR(res.data);
-
-      
     } catch (error) {
       console.log(error.response?.data.message);
     }
@@ -33,15 +31,23 @@ export default function Page({ params }) {
           </Link>
         </div>
 
-        <h1 className="py-3 text-3xl font-extrabold  leading-none tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
-          Registra tu solicitud
-        </h1>
-
-        <p className="text-lg w-5/6 font-semibold leading-none  tracking-tight text-colorThree md:text-5xl lg:text-6xl">
-          Debe tener en cuenta que la informacion a suministrar debe ser clara y
-          completa.
-        </p>
-        
+        <div className="bg-gray-100 p-4 rounded-lg shadow-md my-4">
+          <div className="bg-colorOne text-white p-2 rounded-t-lg">
+            <h2 className="text-xl font-bold">Radicado #{pqr?.radicado}</h2>
+            <p className="italic">Fecha de Creación: {pqr?.createdAt}</p>
+            <p className="font-semibold">
+              Ubicación: {pqr?.departament}, {pqr?.city}
+            </p>
+          </div>
+          <div className="p-4">
+            <h3 className="text-lg font-semibold mb-2">
+              Asunto: {pqr?.subject}
+            </h3>
+            <p>{pqr?.description}</p>
+            <h3 className="text-lg font-semibold mt-4">Respuesta:</h3>
+            <p>{pqr?.response}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
