@@ -11,6 +11,18 @@ export default function Page({ params }) {
   const [response, setResponse] = useState("");
   const { radic } = params;
 
+  // Función para formatear la fecha y hora
+  const formatDateTime = (dateTime) => {
+    const date = new Date(dateTime);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  };
+
   const fetchPQR = async () => {
     try {
       const res = await Axios.get(`/api/pqr/${params.radic}`);
@@ -27,6 +39,7 @@ export default function Page({ params }) {
       const res = await Axios.put("/api/pqr", {
         radic,
         res: response,
+        status: "Finalizado",
       });
       console.log(res);
 
@@ -60,16 +73,39 @@ export default function Page({ params }) {
               <MdArrowBack size={25} />
             </Link>
 
-            <p className="text-xs text-slate-600">{pqr?.createdAt}</p>
+            <p className="text-xs text-slate-600">{formatDateTime(pqr?.createdAt)}</p>
           </div>
 
           <div className="py-3 overflow-y-auto">
-            <h1 className="font-bold">{pqr?.subject}</h1>
+            <h1 className="font-bold">
+              {pqr?.subject}
+              {pqr?.response !== "" && (
+                <span className="px-2 py-1 ml-5 text-white text-xs rounded-full bg-green-500">{pqr?.type} Finalizada</span>
+              )}
+              {pqr?.response === "" && (
+                <span className="px-2 py-1 ml-5 text-white text-xs rounded-full bg-red-500">{pqr?.type} Pendiente</span>
+              )}
+              </h1>
             <p className="text-s text-slate-600">{pqr?.fullname}</p>
             <p className=" py-2 text-slate-800 font-semibold">
               {pqr?.description}
             </p>
+
+            {pqr?.mean != null && (
+              <p>Medio de respuesta: <span className="text-s text-slate-600">{pqr?.mean}</span></p>
+            )}
           </div>
+
+        {pqr?.response !== "" && (
+          <div className="py-3 overflow-y-auto">
+            <p className="text-s text-slate-600">Respuesta</p>
+            <p className=" py-2 text-slate-800 font-semibold">
+              {pqr?.response}
+            </p>
+          </div>
+        )}
+
+        {pqr?.response === "" && (
 
           <div className="mt-auto flex flex-col">
             <form onSubmit={handleSubmit}>
@@ -92,6 +128,7 @@ export default function Page({ params }) {
               </div>
             </form>
           </div>
+        )}
         </div>
       </div>
 
