@@ -14,13 +14,15 @@ export default function Page() {
   const [city, setCity] = useState("Anonimo");
   const [subject, setSubject] = useState(null);
   const [description, setDescription] = useState(null);
+  const [type, setType] = useState(null);
+  const [mean, setMean] = useState(null);
   const [error, setError] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     //console.log(fullnames,email,cel,dep,city,subject,description,error)
-  
+
     try {
       const res = await Axios.post("/api/pqr", {
         fullname: fullnames,
@@ -30,6 +32,8 @@ export default function Page() {
         city,
         subject,
         description,
+        type,
+        mean,
       });
 
       swal({
@@ -186,18 +190,74 @@ export default function Page() {
               </label>
             </div>
             </>
-
-          
-            
           )}
-          
+
 
           <div className="w-5/6 pt-4">
-            
 
             <h2 className=" mb-3 text-lg font-extrabold  leading-none tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
               PQR
             </h2>
+
+            <div className="relative z-0 w-full mb-6 mt-10 group">
+              <select
+                name="type"
+                id="type"
+                className="block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300  dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                onChange={(e) => setType(e.target.value)}
+                required
+              >
+                <option value=""></option>
+                <option value="Petición">Petición</option>
+                <option value="Queja">Queja</option>
+              </select>
+              <label
+                htmlFor="type"
+                className="peer-focus:font-medium absolute text-2xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
+              >
+                Tipo de PQR
+              </label>
+            </div>
+
+            <div className="relative z-0 w-full mb-6 mt-10 group">
+              <p className="text-xl text-colorThree dark:text-gray-400 mb-2">
+                Selecciona el medio de respuesta:
+              </p>
+              <label className="flex items-center text-colorThree dark:text-gray-400">
+                <input
+                  type="radio"
+                  name="mean"
+                  value="Teléfono"
+                  className="mr-2"
+                  checked={mean === "Teléfono"}
+                  onChange={(e) => setMean(e.target.value)}
+                />
+                Teléfono
+              </label>
+              <label className="flex items-center text-colorThree dark:text-gray-400">
+                <input
+                  type="radio"
+                  name="mean"
+                  value="Correo electrónico"
+                  className="mr-2"
+                  checked={mean === "Correo electrónico"}
+                  onChange={(e) => setMean(e.target.value)}
+                />
+                Correo Electrónico
+              </label>
+              <label className="flex items-center text-colorThree dark:text-gray-400">
+                <input
+                  type="radio"
+                  name="mean"
+                  value="Escrito"
+                  className="mr-2"
+                  checked={mean === "Escrito"}
+                  onChange={(e) => setMean(e.target.value)}
+                  required
+                />
+                Escrito
+              </label>
+            </div>
 
             <div className="relative z-0 w-full mb-6 group ">
               <input
