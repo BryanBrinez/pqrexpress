@@ -46,10 +46,27 @@ const PQRSchema = new Schema(
       type: String,
       required: [true, "La descripcion del PQR es requerida"],
       minLength: [5, "El asunto tiene que ser mayor a 5 caracteres"],
-      
+
     },
     response: {
       type: String,
+    },
+
+    mean: {  // medio de respuesta
+      type: String,
+      enum: ["Teléfono", "Correo electrónico", "Escrito"],
+      required: [true, "El medio por donde el usuario desea obtener la respuesta es requerido"],
+    },
+
+    type: {
+      type: String,
+      enum: ["Petición", "Queja"],
+      required: [true, "El tipo es requerido"],
+    },
+
+    status: {
+      type: String,
+      enum: ["Pendiente", "Finalizada"],
     },
   },
   {
