@@ -19,6 +19,15 @@ export default function Page() {
   const [error, setError] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
 
+  const handleSubject = (sub) => {
+    if (sub === "Petición")
+      return "Petición: Solicitud de información o aclaración sobre un producto, servicio o situación en particular.";
+    if (sub === "Queja")
+      return "Queja: Expresión de insatisfacción o descontento con un producto o servicio debido a problemas, deficiencias o incumplimientos percibidos.";
+    if (sub === "Reclamo")
+      return "Reclamo: Demanda formal para obtener una solución o compensación específica en respuesta a un problema o queja";
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     //console.log(fullnames,email,cel,dep,city,subject,description,error)
@@ -71,7 +80,12 @@ export default function Page() {
             ¿PQR Anonimo?
           </span>
           <label className="relative inline-flex items-center cursor-pointer">
-            <input onChange={() => setShowInfo(!showInfo)} type="checkbox" value="" className="sr-only peer" />
+            <input
+              onChange={() => setShowInfo(!showInfo)}
+              type="checkbox"
+              value=""
+              className="sr-only peer"
+            />
             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
           </label>
         </div>
@@ -86,115 +100,113 @@ export default function Page() {
 
           {!showInfo && (
             <>
-            <h2 className="my-3 text-lg font-extrabold  leading-none tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
-            Información de contacto
-          </h2>
+              <h2 className="my-3 text-lg font-extrabold  leading-none tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
+                Información de contacto
+              </h2>
 
-          <div className="relative z-0 w-full mb-6 group ">
-              <input
-                style={{ borderColor: error ? "red" : "" }}
-                type="text"
-                name="fullName"
-                autoComplete="off"
-                id="fullName"
-                className=" block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                onChange={(e) => setFullNames(e.target.value)}
-                required
-              />
-              <label
-                htmlFor="fullName"
-                className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Nombre Completo
-              </label>
-            </div>
+              <div className="relative z-0 w-full mb-6 group ">
+                <input
+                  style={{ borderColor: error ? "red" : "" }}
+                  type="text"
+                  name="fullName"
+                  autoComplete="off"
+                  id="fullName"
+                  className=" block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  onChange={(e) => setFullNames(e.target.value)}
+                  required
+                />
+                <label
+                  htmlFor="fullName"
+                  className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Nombre Completo
+                </label>
+              </div>
 
-            <div className="relative z-0 w-full mb-6 group ">
-              <input
-                style={{ borderColor: error ? "red" : "" }}
-                type="email"
-                name="email"
-                autoComplete="off"
-                id="email"
-                className=" block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <label
-                htmlFor="email"
-                className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Correo electronico
-              </label>
-            </div>
+              <div className="relative z-0 w-full mb-6 group ">
+                <input
+                  style={{ borderColor: error ? "red" : "" }}
+                  type="email"
+                  name="email"
+                  autoComplete="off"
+                  id="email"
+                  className=" block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <label
+                  htmlFor="email"
+                  className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Correo electronico
+                </label>
+              </div>
 
-            <div className="relative z-0 w-full mb-6 group ">
-              <input
-                style={{ borderColor: error ? "red" : "" }}
-                type="number"
-                name="cel"
-                autoComplete="off"
-                id="cel"
-                className=" block py-2.5 px-0 w-full text-xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                onChange={(e) => setCel(e.target.value)}
-                required
-              />
-              <label
-                htmlFor="cel"
-                className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Celular
-              </label>
-            </div>
+              <div className="relative z-0 w-full mb-6 group ">
+                <input
+                  style={{ borderColor: error ? "red" : "" }}
+                  type="number"
+                  name="cel"
+                  autoComplete="off"
+                  id="cel"
+                  className=" block py-2.5 px-0 w-full text-xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  onChange={(e) => setCel(e.target.value)}
+                  required
+                />
+                <label
+                  htmlFor="cel"
+                  className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Celular
+                </label>
+              </div>
 
-            <div className="relative z-0 w-full mb-6 group ">
-              <input
-                style={{ borderColor: error ? "red" : "" }}
-                type="text"
-                name="dep"
-                autoComplete="off"
-                id="dep"
-                className=" block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                onChange={(e) => setDep(e.target.value)}
-                required
-              />
-              <label
-                htmlFor="dep"
-                className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Departamento
-              </label>
-            </div>
+              <div className="relative z-0 w-full mb-6 group ">
+                <input
+                  style={{ borderColor: error ? "red" : "" }}
+                  type="text"
+                  name="dep"
+                  autoComplete="off"
+                  id="dep"
+                  className=" block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  onChange={(e) => setDep(e.target.value)}
+                  required
+                />
+                <label
+                  htmlFor="dep"
+                  className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Departamento
+                </label>
+              </div>
 
-            <div className="relative z-0 w-full mb-6 group ">
-              <input
-                style={{ borderColor: error ? "red" : "" }}
-                type="text"
-                name="city"
-                autoComplete="off"
-                id="city"
-                className=" block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                onChange={(e) => setCity(e.target.value)}
-                required
-              />
-              <label
-                htmlFor="city"
-                className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Ciudad
-              </label>
-            </div>
+              <div className="relative z-0 w-full mb-6 group ">
+                <input
+                  style={{ borderColor: error ? "red" : "" }}
+                  type="text"
+                  name="city"
+                  autoComplete="off"
+                  id="city"
+                  className=" block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  onChange={(e) => setCity(e.target.value)}
+                  required
+                />
+                <label
+                  htmlFor="city"
+                  className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Ciudad
+                </label>
+              </div>
             </>
           )}
 
-
           <div className="w-5/6 pt-4">
-
             <h2 className=" mb-3 text-lg font-extrabold  leading-none tracking-tight text-colorThree md:text-5xl lg:text-6xl ">
               PQR
             </h2>
@@ -210,6 +222,7 @@ export default function Page() {
                 <option value=""></option>
                 <option value="Petición">Petición</option>
                 <option value="Queja">Queja</option>
+                <option value="Reclamo">Reclamo</option>
               </select>
               <label
                 htmlFor="type"
@@ -217,6 +230,8 @@ export default function Page() {
               >
                 Tipo de PQR
               </label>
+
+              {type && <p className="text-gray-500"> {handleSubject(type)}</p>}
             </div>
 
             <div className="relative z-0 w-full mb-6 mt-10 group">
@@ -259,6 +274,49 @@ export default function Page() {
               </label>
             </div>
 
+            {showInfo && mean === "Correo electrónico" && (
+              <div className="relative z-0 w-full mb-6 group ">
+                <input
+                  style={{ borderColor: error ? "red" : "" }}
+                  type="email"
+                  name="email"
+                  autoComplete="off"
+                  id="email"
+                  className=" block py-2.5 px-0 w-full text-2xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <label
+                  htmlFor="email"
+                  className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Correo electronico
+                </label>
+              </div>
+            )}
+            {showInfo && mean === "Teléfono" && (
+              <div className="relative z-0 w-full mb-6 group ">
+                <input
+                  style={{ borderColor: error ? "red" : "" }}
+                  type="number"
+                  name="cel"
+                  autoComplete="off"
+                  id="cel"
+                  className=" block py-2.5 px-0 w-full text-xl text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  onChange={(e) => setCel(e.target.value)}
+                  required
+                />
+                <label
+                  htmlFor="cel"
+                  className="peer-focus:font-medium absolute text-xl text-colorThree dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Celular
+                </label>
+              </div>
+            )}
+
             <div className="relative z-0 w-full mb-6 group ">
               <input
                 style={{ borderColor: error ? "red" : "" }}
@@ -299,7 +357,10 @@ export default function Page() {
               </label>
             </div>
           </div>
-          <button className=" bg-colorOne w-2/5 text-white font-bold py-2 rounded " type="submit">
+          <button
+            className=" bg-colorOne w-2/5 text-white font-bold py-2 rounded "
+            type="submit"
+          >
             Subir pqr
           </button>
         </form>

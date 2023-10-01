@@ -60,7 +60,7 @@ const PQRSchema = new Schema(
 
     type: {
       type: String,
-      enum: ["Petición", "Queja"],
+      enum: ["Petición", "Queja", "Reclamo"],
       required: [true, "El tipo es requerido"],
     },
 

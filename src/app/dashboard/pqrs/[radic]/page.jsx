@@ -40,6 +40,8 @@ export default function Page({ params }) {
         radic,
         res: response,
         status: "Finalizado",
+        email: pqr?.email,
+        mean: pqr?.mean,
       });
       console.log(res);
 
@@ -72,63 +74,73 @@ export default function Page({ params }) {
             <Link href={"/dashboard/pqrs"}>
               <MdArrowBack size={25} />
             </Link>
-
-            <p className="text-xs text-slate-600">{formatDateTime(pqr?.createdAt)}</p>
+            {pqr?.response !== "" && (
+                <span className="px-2 py-1 ml-5 text-white text-xs rounded-full bg-green-500">
+                  {pqr?.type} Finalizada
+                </span>
+              )}
+              {pqr?.response === "" && (
+                <span className="px-2 py-1 ml-5 text-white text-xs rounded-full bg-red-500">
+                  {pqr?.type} Pendiente
+                </span>
+              )}
+            <p className="text-xs text-slate-600">
+              {formatDateTime(pqr?.createdAt)}
+            </p>
           </div>
 
           <div className="py-3 overflow-y-auto">
-            <h1 className="font-bold">
-              {pqr?.subject}
-              {pqr?.response !== "" && (
-                <span className="px-2 py-1 ml-5 text-white text-xs rounded-full bg-green-500">{pqr?.type} Finalizada</span>
-              )}
-              {pqr?.response === "" && (
-                <span className="px-2 py-1 ml-5 text-white text-xs rounded-full bg-red-500">{pqr?.type} Pendiente</span>
-              )}
-              </h1>
+            
+            <div className="flex w-full justify-between items-center font-bold">
+              
+                <h1 >{pqr?.subject}</h1>
+            </div>
+
             <p className="text-s text-slate-600">{pqr?.fullname}</p>
-            <p className=" py-2 text-slate-800 font-semibold">
+            <p className="py-2 text-slate-800 font-semibold">
               {pqr?.description}
             </p>
 
             {pqr?.mean != null && (
-              <p>Medio de respuesta: <span className="text-s text-slate-600">{pqr?.mean}</span></p>
+              <p>
+                Medio de respuesta:{" "}
+                <span className="text-s text-slate-600">{pqr?.mean}</span>
+              </p>
             )}
           </div>
 
-        {pqr?.response !== "" && (
-          <div className="py-3 overflow-y-auto">
-            <p className="text-s text-slate-600">Respuesta</p>
-            <p className=" py-2 text-slate-800 font-semibold">
-              {pqr?.response}
-            </p>
-          </div>
-        )}
+          {pqr?.response !== "" && (
+            <div className="py-3 overflow-y-auto">
+              <p className="text-s text-slate-600">Respuesta</p>
+              <p className=" py-2 text-slate-800 font-semibold">
+                {pqr?.response}
+              </p>
+            </div>
+          )}
 
-        {pqr?.response === "" && (
+          {pqr?.response === "" && (
+            <div className="mt-auto flex flex-col">
+              <form onSubmit={handleSubmit}>
+                <div className="flex justify-center ">
+                  <input
+                    className="mb-2 h-14 border w-11/12 border-gray-400 px-4"
+                    type="text"
+                    placeholder="Tu respuesta"
+                    onChange={(e) => setResponse(e.target.value)}
+                  />
+                </div>
 
-          <div className="mt-auto flex flex-col">
-            <form onSubmit={handleSubmit}>
-              <div className="flex justify-center ">
-                <input
-                  className="mb-2 h-14 border w-11/12 border-gray-400 px-4"
-                  type="text"
-                  placeholder="Tu respuesta"
-                  onChange={(e) => setResponse(e.target.value)}
-                />
-              </div>
-
-              <div className="flex justify-center items-start">
-                <button
-                  type="submit"
-                  className=" bg-colorOne w-3/4 text-white font-bold py-2 rounded "
-                >
-                  Responder
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
+                <div className="flex justify-center items-start">
+                  <button
+                    type="submit"
+                    className=" bg-colorOne w-3/4 text-white font-bold py-2 rounded "
+                  >
+                    Responder
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
         </div>
       </div>
 
