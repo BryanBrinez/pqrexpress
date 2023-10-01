@@ -87,13 +87,13 @@ export const PUT = async (request) => {
       const transporter = createTransport({
         service: "hotmail", // El servicio de correo que estás utilizando (puedes cambiarlo)
         auth: {
-          user: process.env.EMAIL_USER, // Tu dirección de correo electrónico
-          pass: process.env.EMAIL_PASS, // Tu contraseña
+          user: "pqrexpress@hotmail.com", // Tu dirección de correo electrónico
+          pass: "express123", // Tu contraseña
         },
       });
 
       const mailOptions = {
-        from: process.env.EMAIL_USER, // Tu dirección de correo electrónico
+        from: "pqrexpress@hotmail.com", // Tu dirección de correo electrónico
         to: email, // El destinatario
         subject: "Su PQR con con radicado #" + radic + " Ha sido respondido",
         text: res, // Texto del correo
