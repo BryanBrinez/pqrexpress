@@ -78,7 +78,7 @@ export const GET = async (request) => {
 export const PUT = async (request) => {
   try {
     await connectDB();
-    const { radic, res, status, email, mean } = await request.json();
+    const { radic, res, status, contact, mean } = await request.json();
 
    
 
@@ -94,7 +94,7 @@ export const PUT = async (request) => {
 
       const mailOptions = {
         from: "pqrexpress@hotmail.com", // Tu dirección de correo electrónico
-        to: email, // El destinatario
+        to: contact, // El destinatario
         subject: "Su PQR con con radicado #" + radic + " Ha sido respondido",
         text: res, // Texto del correo
         // Puedes usar "html" en lugar de "text" para enviar correo en formato HTML
@@ -113,6 +113,19 @@ export const PUT = async (request) => {
     if(mean == "Teléfono"){
       //aquí va el envio por sms o por whatsapp
       console.log("telefono")
+      console.log(contact)
+
+      const accountSid = "AC0f69b1cf7a3fb658bbc7ab519654050b";
+      const authToken = "4eba1d41666bbb9e550494a2bebdaa9a";
+      const client = require("twilio") (accountSid, authToken);
+
+      client.messages
+        .create({
+          body: "Su PQR con radicado #" + radic + " ha sido respondido: " + res,
+          from: "+15415260353",  // Twilio free number
+          to: "+57" + contact,
+        })
+        .then(message => console.log(message.sid));
     }
 
     const filter = { radicado: radic };

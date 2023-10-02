@@ -36,11 +36,19 @@ export default function Page({ params }) {
     e.preventDefault();
 
     try {
+      let contact = null;
+
+      if (pqr?.email != "Anonimo") {
+        contact = pqr?.email;
+      } else if (pqr?.number != "Anonimo") {
+        contact = pqr?.number;
+      }
+
       const res = await Axios.put("/api/pqr", {
         radic,
         res: response,
         status: "Finalizado",
-        email: pqr?.email,
+        contact,
         mean: pqr?.mean,
       });
       console.log(res);
