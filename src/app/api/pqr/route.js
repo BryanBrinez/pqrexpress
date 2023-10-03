@@ -80,52 +80,65 @@ export const PUT = async (request) => {
     await connectDB();
     const { radic, res, status, contact, mean } = await request.json();
 
-   
-
     if (mean == "Correo electrónico") {
-      console.log("entro al correo")
-      const transporter = createTransport({
-        service: "hotmail", // El servicio de correo que estás utilizando (puedes cambiarlo)
-        auth: {
-          user: "pqrexpress@hotmail.com", // Tu dirección de correo electrónico
-          pass: "express123", // Tu contraseña
-        },
-      });
+      const correoTexto = `
+      Respuesta a tu PQR
+  
+      Hola ${contact},
+  
+      Queremos informarte que hemos procesado tu PQR con radicado #${radic}. A continuación, encontrarás nuestra respuesta:
+  
+      -------------------------------------------------------
+      ${res}
+      -------------------------------------------------------
+  
+      Si tienes alguna pregunta adicional o necesitas más ayuda, no dudes en contactarnos.
+  
+      Gracias por utilizar nuestro servicio.
+  
+      Atentamente,
+      PQRExpress
+    `;
 
-      const mailOptions = {
-        from: "pqrexpress@hotmail.com", // Tu dirección de correo electrónico
-        to: contact, // El destinatario
-        subject: "Su PQR con con radicado #" + radic + " Ha sido respondido",
-        text: res, // Texto del correo
-        // Puedes usar "html" en lugar de "text" para enviar correo en formato HTML
-      };
-
-      // Envío del correo electrónico
-      transporter
-        .sendMail(mailOptions)
-        .then((info) => {
-          console.log("Correo enviado con éxito:", info.response);
-        })
-        .catch((error) => {
-          console.error("Error al enviar el correo:", error);
+      try {
+        const transporter = createTransport({
+          service: "hotmail", // El servicio de correo que estás utilizando (puedes cambiarlo)
+          auth: {
+            user: "pqrexpress@hotmail.com", // Tu dirección de correo electrónico
+            pass: "express123", // Tu contraseña
+          },
         });
+
+        const mailOptions = {
+          from: "pqrexpress@hotmail.com", // Tu dirección de correo electrónico
+          to: contact, // El destinatario
+          subject: "Su PQR con con radicado #" + radic + " Ha sido respondido",
+          text: correoTexto, // Texto del correo
+        };
+
+        const info = await transporter.sendMail(mailOptions);
+        console.log("Correo enviado con éxito:", info.response);
+      } catch (error) {
+        console.error("Error al enviar el correo:", error);
+      }
     }
-    if(mean == "Teléfono"){
+  
+    if (mean == "Teléfono") {
       //aquí va el envio por sms o por whatsapp
-      console.log("telefono")
-      console.log(contact)
+      console.log("telefono");
+      console.log(contact);
 
       const accountSid = "AC0f69b1cf7a3fb658bbc7ab519654050b";
       const authToken = "3acdeb9a8a347cccec7861da15ae2926";
-      const client = require("twilio") (accountSid, authToken);
+      const client = require("twilio")(accountSid, authToken);
 
       client.messages
         .create({
           body: "Su PQR con radicado #" + radic + " ha sido respondido: " + res,
-          from: "+15415260353",  // Twilio free number
+          from: "+15415260353", // Twilio free number
           to: "+57" + contact,
         })
-        .then(message => console.log(message.sid));
+        .then((message) => console.log(message.sid));
     }
 
     const filter = { radicado: radic };
