@@ -116,7 +116,7 @@ export const PUT = async (request) => {
       console.log(contact)
 
       const accountSid = "AC0f69b1cf7a3fb658bbc7ab519654050b";
-      const authToken = "4eba1d41666bbb9e550494a2bebdaa9a";
+      const authToken = "3acdeb9a8a347cccec7861da15ae2926";
       const client = require("twilio") (accountSid, authToken);
 
       client.messages
