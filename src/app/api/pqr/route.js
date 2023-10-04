@@ -81,24 +81,35 @@ export const PUT = async (request) => {
     const { radic, res, status, contact, mean } = await request.json();
 
     if (mean == "Correo electrónico") {
-      const correoTexto = `
-      Respuesta a tu PQR
-  
-      Hola ${contact},
-  
-      Queremos informarte que hemos procesado tu PQR con radicado #${radic}. A continuación, encontrarás nuestra respuesta:
-  
-      -------------------------------------------------------
-      ${res}
-      -------------------------------------------------------
-  
-      Si tienes alguna pregunta adicional o necesitas más ayuda, no dudes en contactarnos.
-  
-      Gracias por utilizar nuestro servicio.
-  
-      Atentamente,
-      PQRExpress
-    `;
+    
+
+      const correoHTML = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respuesta a tu PQR</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        
+    </div>
+    <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <h1>Respuesta a tu PQR</h1>
+        <p>Hola ${contact},</p>
+        <p>Queremos informarte que hemos procesado tu PQR con radicado #${radic}. A continuación, encontrarás nuestra respuesta:</p>
+        <hr>
+        <p>${res}</p>
+        <hr>
+        <p>Si tienes alguna pregunta adicional o necesitas más ayuda, no dudes en contactarnos.</p>
+        <p>Gracias por utilizar nuestro servicio.</p>
+        <p>Atentamente,</p>
+        <p>PQRExpress</p>
+    </div>
+</body>
+</html>
+`;
 
       try {
         const transporter = createTransport({
@@ -113,7 +124,7 @@ export const PUT = async (request) => {
           from: "pqrexpress@hotmail.com", // Tu dirección de correo electrónico
           to: contact, // El destinatario
           subject: "Su PQR con con radicado #" + radic + " Ha sido respondido",
-          text: correoTexto, // Texto del correo
+          html: correoHTML, // Texto del correo
         };
 
         const info = await transporter.sendMail(mailOptions);
@@ -122,7 +133,7 @@ export const PUT = async (request) => {
         console.error("Error al enviar el correo:", error);
       }
     }
-  
+
     if (mean == "Teléfono") {
       //aquí va el envio por sms o por whatsapp
       console.log("telefono");

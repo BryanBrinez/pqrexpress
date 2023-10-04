@@ -101,7 +101,7 @@ export default function Page() {
             </label>
           </div>
 
-          <button className="bg-indigo-500 text-white px-4 py-2 mt-5" type="submit">
+          <button className=" bg-colorOne w-2/5 text-white font-bold py-2 rounded " type="submit">
             {" "}
             Registrar
           </button>
