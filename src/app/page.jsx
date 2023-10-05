@@ -21,8 +21,7 @@ export default function Home() {
 
         <div className="flex flex-col w-5/6 items-center justify-center">
           <p className="text-lg font-normal mt-4  text-colorTwo lg:text-xl ">
-            Radique y haga seguimiento a las Peticiones, Quejas, Reclamos,
-            Sugerencias, Felicitaciones y Denuncias (PQR).
+            Radique y haga seguimiento a las Peticiones, Quejas, Reclamos (PQR).
           </p>
           <p className="text-lg mt-6 text-colorThree font-semibold lg:text-xl">
             ¿Qué desea realizar?
